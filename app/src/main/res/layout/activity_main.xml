@@ -11,7 +11,7 @@
         android:id="@+id/top_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/center_layout">
 
 
@@ -22,8 +22,7 @@
             android:layout_weight="1"
             android:layout_margin="4dp"
             android:padding="10dp"
-            android:src="@drawable/music"
-            >
+            android:src="@drawable/music">
 
         </ImageView>
         <ImageView
@@ -36,26 +35,6 @@
             android:src="@drawable/call"
             >
         </ImageView>
-
-
-    </LinearLayout>
-
- <LinearLayout
-     android:id="@+id/center_layout"
-     android:orientation="horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_centerInParent="true"
-     >
- </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/bottom_layout"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/center_layout">
 
 
         <ImageView
@@ -79,6 +58,28 @@
             android:src="@drawable/battery"
             >
         </ImageView>
+
+
+
+    </LinearLayout>
+
+ <LinearLayout
+     android:id="@+id/center_layout"
+     android:orientation="horizontal"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_centerInParent="true"
+     >
+ </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/center_layout">
+
 
 
     </LinearLayout>
