@@ -16,7 +16,8 @@ public class PermissionsUtility {
     public static void checkRequiredPermission(Activity context) {
         if (ContextCompat.checkSelfPermission(context,
                 Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO},
+            ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.RECORD_AUDIO,Manifest.permission.READ_CONTACTS,
+                            Manifest.permission.CALL_PHONE},
                     RECORD_AUDIO_PERMISSION_REQUEST_CODE);
         }
     }

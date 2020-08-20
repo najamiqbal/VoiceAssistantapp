@@ -17,6 +17,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ import com.example.voiceassistantapp.utils.MyDictionaryDatabase;
 import com.example.voiceassistantapp.utils.PermissionsUtility;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences sharedPreferencesMainHome;
+    int androidAPILevel = android.os.Build.VERSION.SDK_INT;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         initializeTextToSpeech();
 
         PermissionsUtility.checkRequiredPermission(this);
+       // PermissionsUtility.checkReadContactAndCallPerrmission(this);
 
         handler=new Handler();
         handler.postDelayed(new Runnable() {
@@ -142,7 +147,16 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     }
 
     private void speak(String word) {
-        textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, null);
+       // textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+        if (androidAPILevel < 21) {
+            HashMap<String,String> params = new HashMap<>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, "1"); // change the 0.5 to any value from 0-1 (1 is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params);
+        } else { // android API level is 21 or higher...
+            Bundle params = new Bundle();
+            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, 1f); // change the 0.5f to any value from 0f-1f (1f is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params, null);
+        }
 
     }
 
@@ -195,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
                     mSpeechText = true;
                     mCheckCountDownTime = false;
+                    mEdtHomeMain.setText("");
                     Toast.makeText(this, getResources().getString(R.string.start), Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -213,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     mSpeechRecognizer.cancel();
                     mSpeechText = false;
                     Toast.makeText(this, getResources().getString(R.string.stop), Toast.LENGTH_SHORT).show();
+
                 }
                 break;
         }
@@ -309,22 +325,34 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 Log.d("#121", mText);
                 for (int i = 0; i < myDictionaries.size(); i++) {
                     if (myDictionaries.get(i).getYouSay().toLowerCase().equals(mText.toLowerCase()) == true) {
-                        mEdtHomeMain.setText(mEdtHomeMain.getText().toString() + myDictionaries.get(i).getAppUnderstand().toString() + " ");
+                        mEdtHomeMain.setText(mEdtHomeMain.getText().toString() + myDictionaries.get(i).getAppUnderstand().toString());
                         mCheckText = true;
                        // mTextDelete = myDictionaries.get(i).getAppUnderstand() + " ";
                         mEdtHomeMain.setSelection(mEdtHomeMain.length());
-
+                        if (TextUtils.equals(mEdtHomeMain.getText().toString(),"battery level")){
+                            Log.d("#121", "onResults: this loop");
+                            getBattery_percentage();
+                        }
+                        Log.d("#121", "onResults: this loop");
                     }
+
                 }
                 if (mCheckText == false) {
-                    mEdtHomeMain.setText(mEdtHomeMain.getText().toString() + mText.toLowerCase() + " ");
+                    mEdtHomeMain.setText(mEdtHomeMain.getText().toString() + mText.toLowerCase());
                    // mTextDelete = mText.toLowerCase() + " ";
                     mEdtHomeMain.setSelection(mEdtHomeMain.length());
+                    if (TextUtils.equals(mEdtHomeMain.getText().toString(),"battery level")){
+                        Log.d("#121", "onResults: this loop2");
+                        getBattery_percentage();
+                    }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialer") || TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialler"))
+                    {
+                        startActivity(new Intent(MainActivity.this,DialerActivity.class));
+                    }
+                    Log.d("#121", "onResults: this loop2");
                 }
                // mCheckBackText = false;
                 mSpeechRecognizer.cancel();
-                mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-
+                //mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
                 //mCheckDeleteText = true;
 
             }
