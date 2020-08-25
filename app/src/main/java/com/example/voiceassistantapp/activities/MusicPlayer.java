@@ -10,8 +10,10 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,9 +31,11 @@ import com.example.voiceassistantapp.models.AudioModel;
 import com.example.voiceassistantapp.utils.OnSwipeTouchListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
-public class MusicPlayer extends AppCompatActivity {
+public class MusicPlayer extends AppCompatActivity implements TextToSpeech.OnInitListener{
 
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
     private static final int REQUEST_PERMISSION_SETTING = 101;
@@ -50,16 +54,20 @@ public class MusicPlayer extends AppCompatActivity {
     private List<AudioModel> audioModelList;
 
     private LinearLayoutManager verticalLayoutManager;
+    int androidAPILevel = android.os.Build.VERSION.SDK_INT;
 
     private MediaPlayer mp;
 
     private int selectedIndex = -1;
     private boolean isPause = false;
+    private TextToSpeech textToSpeech;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
+        initializeTextToSpeech();
 
         recyclerView = findViewById(R.id.recycler_view);
         swipeLayout = findViewById(R.id.swipe_layout);
@@ -124,6 +132,13 @@ public class MusicPlayer extends AppCompatActivity {
                 }
             }
         });
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               speak("Welcome to Music Page");
+            }
+        },2000);
     }
 
     private void listAudioFilesToView() {
@@ -361,5 +376,31 @@ public class MusicPlayer extends AppCompatActivity {
         super.onPause();
         if (mp != null)
             mp.release();
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            int result = textToSpeech.setLanguage(new Locale("en"));
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+            }
+        }
+    }
+    private void initializeTextToSpeech() {
+        textToSpeech = new TextToSpeech(this,  this);
+    }
+    private void speak(String word) {
+        // textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+        if (androidAPILevel < 21) {
+            HashMap<String,String> params = new HashMap<>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, "1"); // change the 0.5 to any value from 0-1 (1 is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params);
+        } else { // android API level is 21 or higher...
+            Bundle params = new Bundle();
+            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, 1f); // change the 0.5f to any value from 0f-1f (1f is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params, null);
+        }
+
     }
 }

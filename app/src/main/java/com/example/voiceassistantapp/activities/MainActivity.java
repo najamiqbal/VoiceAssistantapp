@@ -354,6 +354,10 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     {
                         startActivity(new Intent(MainActivity.this,NotesActivity.class));
                     }
+                    else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"my notes"))
+                    {
+                        startActivity(new Intent(MainActivity.this,TextSavedActivity.class));
+                    }
                     Log.d("#121", "onResults: this loop2");
                 }
                // mCheckBackText = false;

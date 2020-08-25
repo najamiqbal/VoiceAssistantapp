@@ -28,6 +28,7 @@ import com.example.voiceassistantapp.utils.MyDictionary;
 import com.example.voiceassistantapp.utils.MyDictionaryDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -49,6 +50,8 @@ public class DialerActivity extends AppCompatActivity implements TextToSpeech.On
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences sharedPreferencesMainHome;
+    private Handler handler;
+    int androidAPILevel = android.os.Build.VERSION.SDK_INT;
     //TextView lblinfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,8 +63,32 @@ public class DialerActivity extends AppCompatActivity implements TextToSpeech.On
         sharedPreferencesMainHome = getSharedPreferences(KEY.Shared_Preferences_Main, Context.MODE_PRIVATE);
         //lblinfo =  findViewById(R.id.lblinfo);
         initializeTextToSpeech();
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                speak("Welcome to Dialer");
+            }
+        },2000);
 
     }
+
+
+
+    private void speak(String word) {
+        // textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+        if (androidAPILevel < 21) {
+            HashMap<String,String> params = new HashMap<>();
+            params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, "1"); // change the 0.5 to any value from 0-1 (1 is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params);
+        } else { // android API level is 21 or higher...
+            Bundle params = new Bundle();
+            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, 1f); // change the 0.5f to any value from 0f-1f (1f is default)
+            textToSpeech.speak(word, TextToSpeech.QUEUE_ADD, params, null);
+        }
+
+    }
+
     private void initializeTextToSpeech() {
         textToSpeech = new TextToSpeech(this,  this);
     }

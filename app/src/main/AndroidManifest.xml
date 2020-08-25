@@ -29,6 +29,7 @@
         <activity android:name=".activities.DialerActivity"/>
         <activity android:name=".activities.MusicPlayer"/>
         <activity android:name=".activities.NotesActivity"/>
+        <activity android:name=".activities.TextSavedActivity"/>
     </application>
 
 </manifest>

@@ -57,8 +57,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/appWhite"
                     android:gravity="start"
+                    android:padding="@dimen/_10sdp"
                     android:hint="@string/select_your_favorite_language_touch_the_button"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_25sdp" />
 
 
             </LinearLayout>
@@ -78,16 +79,17 @@
 
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/btn_Scanner"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="@dimen/_2sdp"
@@ -105,7 +107,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
@@ -134,9 +136,10 @@
 
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1">
 
                 <ImageView

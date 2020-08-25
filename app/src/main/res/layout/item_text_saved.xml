@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="350dp"
+        android:id="@+id/main_card"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@anim/item_animator"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        tools:targetApi="lollipop">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_14sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_NameItemTextSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:text="vanthien.txt"
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="@color/appBlack"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txt_DateItemTextSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/montserrat_light"
+            android:text="22/05/2016"
+            android:textSize="@dimen/_13sdp" />
+        <TextView
+            android:id="@+id/txt_detailItemTextSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="vanthien.txt"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/montserrat_light"
+            android:textColor="@color/appBlack"
+            android:textSize="@dimen/_15sdp" />
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
