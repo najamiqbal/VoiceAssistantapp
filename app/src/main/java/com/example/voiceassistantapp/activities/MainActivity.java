@@ -347,6 +347,12 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialer") || TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialler"))
                     {
                         startActivity(new Intent(MainActivity.this,DialerActivity.class));
+                    }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"play music"))
+                    {
+                        startActivity(new Intent(MainActivity.this,MusicPlayer.class));
+                    }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"note"))
+                    {
+                        startActivity(new Intent(MainActivity.this,NotesActivity.class));
                     }
                     Log.d("#121", "onResults: this loop2");
                 }

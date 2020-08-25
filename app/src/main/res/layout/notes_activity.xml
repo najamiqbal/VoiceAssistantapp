@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_ContentMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:id="@+id/relative_FiletxtHomeMain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <TextView
+            android:id="@+id/txt_FiletxtHomeMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:allowUndo="true"
+            android:textColor="@color/appBlack"
+            android:fontFamily="@font/montserrat_light"
+            android:text="tentepvanban.txt"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/appGray">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/linear_BottomHomeMain">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edt_HomeMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/appWhite"
+                    android:gravity="start"
+                    android:hint="@string/select_your_favorite_language_touch_the_button"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/linear_BottomHomeMain"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_white"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_10sdp">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/btn_Scanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/swipe_left" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Swipe Left to Clear Note"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="@color/appBlack"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/imv_MicHomeMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_mic" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speak"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/appBlack"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/imv_BackHomeMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/_6sdp"
+                    android:paddingRight="@dimen/_6sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:src="@drawable/swipe_right"
+                    android:tint="@color/appendtitle" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Swipe Right to Save Note"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:textColor="@color/appBlack"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

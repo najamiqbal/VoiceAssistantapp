@@ -349,7 +349,7 @@ public class DialerActivity extends AppCompatActivity implements TextToSpeech.On
                     }
 
                 }*/
-              
+
                 if (mCheckText == false) {
                     if (mFirstCommand){
                     edtPhoneNo.setText(edtPhoneNo.getText().toString() + mText.toLowerCase());
