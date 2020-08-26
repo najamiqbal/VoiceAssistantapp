@@ -67,7 +67,7 @@ public class DialerActivity extends AppCompatActivity implements TextToSpeech.On
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                speak("Welcome to Dialer");
+                speak("Welcome to Dialer. tap on bottom mic. and speak number. tap again to make call. or clear dial number");
             }
         },2000);
 

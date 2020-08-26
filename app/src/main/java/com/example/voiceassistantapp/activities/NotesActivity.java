@@ -84,7 +84,7 @@ public class NotesActivity extends AppCompatActivity implements TextToSpeech.OnI
 
 
     private void Wellcome() {
-        speak("Wellcome to voice Page");
+        speak("Wellcome to notes Page. tap on bottom mic. and speak notes. then swipe Right. to save note. swipe left to clear all text.");
     }
     protected String getSaltString() {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

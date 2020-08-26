@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     }
 
     private void Wellcome() {
-        speak("Wellcome to voice assistant");
+        speak("Wellcome to voice assistant. tap on bottom mic. and speak command. for music. Play music. for dialer. speak open dialer. for battery. speak battery level. for notes. speak my notes or note.");
     }
 
     private void initializeTextToSpeech() {
@@ -104,7 +104,15 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     @Override
     protected void onResume() {
         super.onResume();
-        speak("Wellcome to voice assistant");
+        initializeTextToSpeech();
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Wellcome();
+            }
+        },2000);
+       // speak("Wellcome to voice assistant. tap on bottom mic and speak command. for music. Play music. for dialer. speak open dialer. for battery. speak battery level. for notes. speak my notes or note.");
         setLanguageSelected();
         setLanguageTranslate();
         setBeep();
@@ -185,6 +193,13 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        textToSpeech.shutdown();
+        textToSpeech = null;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         textToSpeech.shutdown();
         textToSpeech = null;
     }

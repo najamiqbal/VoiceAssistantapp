@@ -1,6 +1,7 @@
 package com.example.voiceassistantapp.activities;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class TextSavedActivity extends AppCompatActivity implements TextSavedAda
     private RecyclerView rcvTextSaved;
     private MyTextsavedDatabase myTextsavedDatabase;
     private TextToSpeech textToSpeech;
+    private Handler handler;
     int androidAPILevel = android.os.Build.VERSION.SDK_INT;
     private List<MyTextSaved> myTextSaveds = new ArrayList<>();
     @Override
@@ -32,6 +34,17 @@ public class TextSavedActivity extends AppCompatActivity implements TextSavedAda
         setContentView(R.layout.my_saved_notes);
         initializeTextToSpeech();
         initailization();
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Wellcome();
+            }
+        },2000);
+    }
+
+    private void Wellcome() {
+        speak("Tap long press to listen note detail. double tap to delete note.");
     }
 
     private void initializeTextToSpeech() {

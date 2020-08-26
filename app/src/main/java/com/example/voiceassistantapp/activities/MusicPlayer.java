@@ -136,7 +136,7 @@ public class MusicPlayer extends AppCompatActivity implements TextToSpeech.OnIni
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-               speak("Welcome to Music Page");
+               speak("Welcome to Music Page. Swipe Left to Play Next Music. Swipe Right to play previous music. Swipe down to stop the music. Swipe top to play again.");
             }
         },2000);
     }
