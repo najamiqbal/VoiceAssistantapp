@@ -390,8 +390,12 @@ public class MusicPlayer extends AppCompatActivity implements TextToSpeech.OnIni
     private void initializeTextToSpeech() {
         textToSpeech = new TextToSpeech(this,  this);
     }
+
+
     private void speak(String word) {
-        // textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+         //textToSpeech.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+
         if (androidAPILevel < 21) {
             HashMap<String,String> params = new HashMap<>();
             params.put(TextToSpeech.Engine.KEY_PARAM_VOLUME, "1"); // change the 0.5 to any value from 0-1 (1 is default)

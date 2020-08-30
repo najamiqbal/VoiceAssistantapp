@@ -396,6 +396,7 @@ public class DialerActivity extends AppCompatActivity implements TextToSpeech.On
                             mFirstCommand=true;
                             edtPhoneNo.setText("");
                         }else {
+                            speak("invalid cammond.");
                             mFirstCommand=true;
                         }
                     }

@@ -70,7 +70,7 @@
         <LinearLayout
             android:id="@+id/linear_BottomHomeMain"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:background="@drawable/bg_white"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"

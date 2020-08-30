@@ -356,22 +356,28 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     mEdtHomeMain.setText(mEdtHomeMain.getText().toString() + mText.toLowerCase());
                    // mTextDelete = mText.toLowerCase() + " ";
                     mEdtHomeMain.setSelection(mEdtHomeMain.length());
-                    if (TextUtils.equals(mEdtHomeMain.getText().toString(),"battery level")){
+                    if (TextUtils.equals(mEdtHomeMain.getText().toString(),"battery level") || TextUtils.equals(mEdtHomeMain.getText().toString(),"battery") || TextUtils.equals(mEdtHomeMain.getText().toString(),"battery percentage") ){
                         Log.d("#121", "onResults: this loop2");
                         getBattery_percentage();
                     }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialer") || TextUtils.equals(mEdtHomeMain.getText().toString(),"open dialler"))
                     {
                         startActivity(new Intent(MainActivity.this,DialerActivity.class));
+
                     }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"play music"))
                     {
                         startActivity(new Intent(MainActivity.this,MusicPlayer.class));
+
                     }else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"note"))
                     {
                         startActivity(new Intent(MainActivity.this,NotesActivity.class));
+
                     }
                     else if (TextUtils.equals(mEdtHomeMain.getText().toString(),"my notes"))
                     {
                         startActivity(new Intent(MainActivity.this,TextSavedActivity.class));
+                    }
+                    else {
+                        speak("invalid cammond. tap on mic and please speak again");
                     }
                     Log.d("#121", "onResults: this loop2");
                 }
@@ -432,5 +438,10 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void setLanguageTranslate() {
         mLanguageTranslate = sharedPreferencesMainHome.getString(KEY.LANGUAGETOTRANSLATE, "en");
         //mTextDisplayTranslate.setText(mLanguageTranslate);
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
